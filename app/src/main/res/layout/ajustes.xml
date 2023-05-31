@@ -17,56 +17,61 @@
         android:fontFamily="Dongle"
         android:text="@string/ajustes_string"
         android:textColor="@color/repartos_color"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:visibility="invisible" />
 
-    <ListView
+    <Spinner
         android:id="@+id/almacen_lv"
-        style="@style/Widget.AppCompat.Light.ListView.DropDown"
-        android:layout_width="409dp"
-        android:layout_height="220dp"
-        android:layout_below="@id/matricula_ti"
-        android:layout_marginTop="10dp"
-        android:choiceMode="singleChoice" />
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_below="@id/filledTextField_mat"
+        android:layout_marginTop="10dp" />
 
-    <!--<com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/usuario_ti"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@id/rectangle_2"
-        android:layout_marginTop="15dp"
-        android:hint="@string/IDusuario"
-        tools:ignore="VisualLintTextFieldSize" />-->
-
-    <EditText
-        android:id="@+id/usuario_ti"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/filledTextField_usuario"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/rectangle_2"
         android:layout_marginTop="15dp"
-        android:hint="@string/IDusuario"
-        android:padding="10dp" />
+        android:hint="@string/IDusuario">
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/pwd_ti"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@id/usuario_ti"
-        android:layout_marginTop="10dp"
-        android:hint="@string/codigo_aut"
-        tools:ignore="VisualLintTextFieldSize" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/usuario_ti"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/matricula_ti"
-        android:layout_width="match_parent"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/filledTextField_pwd"
+        android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_below="@id/pwd_ti"
+        android:layout_below="@id/filledTextField_usuario"
         android:layout_marginTop="10dp"
-        android:hint="@string/IDmatricula"
-        tools:ignore="VisualLintTextFieldSize" />
+        android:hint="@string/codigo_aut">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/pwd_ti"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/filledTextField_mat"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_below="@id/filledTextField_pwd"
+        android:layout_marginTop="10dp"
+        android:hint="@string/IDmatricula">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/matricula_ti"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/rdo_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:text=""
+        android:visibility="invisible" />
 </RelativeLayout>

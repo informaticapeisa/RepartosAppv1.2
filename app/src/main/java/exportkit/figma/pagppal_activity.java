@@ -82,13 +82,12 @@ public class pagppal_activity extends Activity {
 		// Obtenemos los datos almacenados en SharedPreferences
 		SharedPreferences sh = getSharedPreferences("MySharedPref", MODE_PRIVATE);
 		String s1 = sh.getString("nombre", "");
-		String s2 = sh.getString("pwd", "");
 		String s3 = sh.getString("matricula", "");
-		//int a = sh.getInt("age", 0);
+		int s4 = sh.getInt("almacen", 0);
 
 		// Setting the fetched data in the EditTexts
 		usuario.setText(s1);
-		matricula.setText(s2);
+		matricula.setText(s3);
 
 	}
 
