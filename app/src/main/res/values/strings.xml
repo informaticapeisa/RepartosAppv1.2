@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">RepartosPeisa</string>
+    <string name="modificar_reparto">Modificar Reparto</string>
+    <string name="crear_reparto">Crear Reparto</string>
+    <string name="entregar">Entregar Albaran</string>
+    <string name="repartos_string">Repartos</string>
+    <string name="usuario">Nombre del empleado</string>
+    <string name="matricula">Matricula</string>
+    <string name="vector_ek3">vector_ek3</string>
+    <string name="logo_peisa">Logo Peisa</string>
+    <string name="vector_ek2">vector_ek2</string>
+    <string name="vector_ek1">vector_ek1</string>
+    <string name="vector">vector</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_modificar_reparto">ModificarReparto</string>
+    <string name="hola">Entregando albarán</string>
+    <string name="no_barcode_detected">Escanea un código de barras para continuar</string>
+    <string name="entregaralbaran">Entregar Albarán</string>
+    <string name="ajustes_string">Ajustes</string>
+    <string name="IDusuario">Usuario</string>
+    <string name="codigo_aut">Código de autentificación</string>
+    <string name="IDmatricula">Número y letras de matrícula</string>
+    <string name="datosalbaran">Datos Albarán escaneado</string>
+    <string name="volver">Volver</string>
+
+</resources>

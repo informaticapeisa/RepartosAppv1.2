@@ -1,0 +1,198 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/content_container"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content">
+
+
+	<View
+		android:id="@+id/_bg__pagppal_ek2"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="0dp"
+		android:layout_marginTop="0dp"
+		android:background="@drawable/_bg__pagppal_ek2_shape" />
+
+	<View
+		android:id="@+id/crear_reparto_ellipse"
+		android:layout_width="108dp"
+		android:layout_height="108dp"
+		android:layout_below="@id/matricula_tv"
+		android:layout_marginStart="52dp"
+		android:layout_marginTop="85dp"
+		android:background="@drawable/ellipse_7_shape" />
+
+	<View
+		android:id="@+id/modificar_reparto_ellipse"
+		android:layout_width="108dp"
+		android:layout_height="108dp"
+		android:layout_alignTop="@id/crear_reparto_ellipse"
+		android:layout_marginStart="210dp"
+		android:background="@drawable/ellipse_1_shape" />
+
+
+	<View
+		android:id="@+id/entregar_reparto_ellipse"
+		android:layout_width="108dp"
+		android:layout_height="108dp"
+		android:layout_alignStart="@id/crear_reparto_ellipse"
+		android:layout_alignTop="@id/crear_reparto_ellipse"
+		android:layout_marginStart="78dp"
+		android:layout_marginTop="153dp"
+		android:background="@drawable/ellipse_2_shape" />
+
+	<RelativeLayout
+		android:id="@+id/truck_check_outline"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="66dp"
+		android:layout_marginTop="328dp">
+
+	</RelativeLayout>
+
+
+	<RelativeLayout
+		android:id="@+id/dolly"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="226dp"
+		android:layout_marginTop="328dp">
+
+	</RelativeLayout>
+
+	<ImageView
+		android:id="@+id/crear_reparto_iv"
+		android:layout_width="73.33dp"
+		android:layout_height="53.33dp"
+		android:layout_alignStart="@id/crear_reparto_ellipse"
+		android:layout_alignTop="@id/crear_reparto_ellipse"
+		android:layout_marginStart="18dp"
+		android:layout_marginTop="27dp"
+		android:contentDescription="@string/vector"
+		android:src="@drawable/vector" />
+
+	<ImageView
+		android:id="@+id/modificar_reparto_iv"
+		android:layout_width="63.33dp"
+		android:layout_height="66.64dp"
+		android:layout_alignStart="@id/modificar_reparto_ellipse"
+		android:layout_alignTop="@id/modificar_reparto_ellipse"
+		android:layout_marginStart="22dp"
+		android:layout_marginTop="22dp"
+		android:contentDescription="@string/vector_ek1"
+		android:src="@drawable/vector_ek1" />
+
+	<ImageView
+		android:id="@+id/entregar_albaran_iv"
+		android:layout_width="70dp"
+		android:layout_height="70dp"
+		android:layout_alignStart="@id/entregar_reparto_ellipse"
+		android:layout_alignTop="@id/entregar_reparto_ellipse"
+		android:layout_marginStart="19dp"
+		android:layout_marginTop="19dp"
+		android:contentDescription="@string/vector_ek2"
+		android:src="@drawable/vector_ek2" />
+
+	<View
+		android:id="@+id/rectangle_1"
+		android:layout_width="match_parent"
+		android:layout_height="60dp"
+		android:layout_marginStart="0dp"
+		android:layout_marginTop="0dp"
+		android:background="@drawable/rectangle_1_shape" />
+
+	<TextView
+		android:id="@+id/repartos_txt"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="17dp"
+		android:layout_marginTop="0dp"
+		android:fontFamily="Dongle"
+		android:text="@string/repartos_string"
+		android:textColor="@color/repartos_color"
+		android:textSize="30sp" />
+
+	<TextView
+		android:id="@+id/modificar_reparto_txt"
+		android:layout_width="130dp"
+		android:layout_height="wrap_content"
+		android:layout_below="@id/modificar_reparto_ellipse"
+		android:layout_alignStart="@id/modificar_reparto_ellipse"
+		android:layout_alignEnd="@id/modificar_reparto_ellipse"
+		android:layout_marginTop="10dp"
+		android:fontFamily="sans-serif"
+		android:gravity="center_horizontal"
+		android:text="@string/modificar_reparto"
+		android:textColor="@color/color_texto"
+		android:textSize="12sp" />
+
+	<TextView
+		android:id="@+id/crear_reparto_txt"
+		android:layout_width="107dp"
+		android:layout_height="wrap_content"
+		android:layout_below="@id/crear_reparto_ellipse"
+		android:layout_alignStart="@id/crear_reparto_ellipse"
+		android:layout_alignEnd="@id/crear_reparto_ellipse"
+		android:layout_marginTop="10dp"
+		android:fontFamily="sans-serif"
+		android:gravity="center_horizontal"
+		android:text="@string/crear_reparto"
+		android:textColor="@color/color_texto"
+		android:textSize="12sp" />
+
+	<TextView
+		android:id="@+id/entregar_albaran_txt"
+		android:layout_width="123dp"
+		android:layout_height="wrap_content"
+		android:layout_below="@id/entregar_reparto_ellipse"
+		android:layout_alignStart="@id/entregar_reparto_ellipse"
+		android:layout_alignEnd="@id/entregar_reparto_ellipse"
+		android:layout_marginTop="10dp"
+		android:fontFamily="sans-serif"
+		android:gravity="center_horizontal"
+		android:text="@string/entregar"
+		android:textColor="@color/color_texto"
+		android:textSize="12sp" />
+
+	<ImageView
+		android:id="@+id/logo_peisa"
+		android:layout_width="103dp"
+		android:layout_height="50dp"
+		android:layout_alignParentEnd="true"
+		android:layout_alignParentBottom="true"
+		android:contentDescription="@string/logo_peisa"
+		android:src="@drawable/grupo_peisa___negro___sin_fondo_1" />
+
+	<TextView
+		android:id="@+id/usuario_tv"
+		android:layout_width="131dp"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="21dp"
+		android:layout_marginTop="90dp"
+		android:fontFamily="sans-serif"
+		android:text="@string/usuario"
+		android:textColor="@color/color_texto"
+		android:textSize="12sp" />
+
+	<TextView
+		android:id="@+id/matricula_tv"
+		android:layout_width="125dp"
+		android:layout_height="wrap_content"
+		android:layout_below="@id/usuario_tv"
+		android:layout_alignStart="@id/usuario_tv"
+		android:layout_marginTop="10dp"
+		android:fontFamily="sans-serif"
+		android:text="@string/matricula"
+		android:textColor="@color/color_texto"
+		android:textSize="12sp" />
+
+	<ImageView
+		android:id="@+id/ajustes_bt"
+		android:layout_width="36.28dp"
+		android:layout_height="36.28dp"
+		android:layout_alignParentEnd="true"
+		android:layout_marginTop="10dp"
+		android:layout_marginEnd="20dp"
+		android:contentDescription="@string/vector_ek3"
+		android:src="@drawable/vector_ek3" />
+
+</RelativeLayout>

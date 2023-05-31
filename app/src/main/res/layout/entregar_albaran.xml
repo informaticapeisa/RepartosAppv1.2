@@ -1,0 +1,170 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/content_container2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:id="@+id/rectangle_"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/rectangle_1_shape" />
+
+    <TextView
+        android:id="@+id/repartos_txt2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@id/rectangle_"
+        android:layout_alignTop="@id/rectangle_"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="0dp"
+        android:fontFamily="Dongle"
+        android:text="@string/entregaralbaran"
+        android:textColor="@color/repartos_color"
+        android:textSize="30sp" />
+    <ImageView
+        android:id="@+id/hole_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@id/surfaceView"
+        android:layout_alignTop="@id/surfaceView"
+        app:srcCompat="@drawable/hole" />
+
+    <SurfaceView
+        android:id="@+id/surfaceView"
+        android:layout_width="1024dp"
+        android:layout_height="768dp"
+        android:layout_below="@id/txtBarcodeValue"
+        android:layout_alignStart="@id/txtBarcodeValue"
+        android:layout_alignParentStart="false"
+        android:layout_centerVertical="false"
+        android:layout_marginStart="-3dp"
+        android:layout_marginTop="19dp"
+        android:visibility="visible" />
+
+
+    <TextView
+        android:id="@+id/txtBarcodeValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="64dp"
+        android:text="@string/no_barcode_detected"
+        android:textColor="@color/color_texto"
+        android:textSize="20sp" />
+
+    <LinearLayout
+        android:id="@+id/datosentregaalb_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/albaran_ll"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="19dp"
+        android:orientation="vertical"
+        android:visibility="invisible">
+
+        <TextView
+            android:id="@+id/datalb_ent_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/datosalbaran"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/Direccion_ent_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/Cliente_tv"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:text="Dirección" />
+
+        <TextView
+            android:id="@+id/gps_ent_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/Direccion_tv"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:text="Población" />
+
+        <Button
+            android:id="@+id/volver_bt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/volver" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/albaran_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtBarcodeValue"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="19dp"
+        android:orientation="vertical"
+        android:visibility="invisible">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/datosalbaran"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/CodigoAlbaran_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:text="Albarán" />
+
+        <TextView
+            android:id="@+id/Cliente_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/CodigoAlbaran_tv"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:text="Cliente" />
+
+        <TextView
+            android:id="@+id/Direccion_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/Cliente_tv"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:text="Dirección" />
+
+
+        <TextView
+            android:id="@+id/CodigoPostal_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/Poblacion_tv"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:text="CP" />
+
+        <Button
+            android:id="@+id/entregarAlb_bt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/CodigoPostal_tv"
+            android:layout_marginTop="15dp"
+            android:onClick="Entregar"
+            android:text="Entregar Albarán" />
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

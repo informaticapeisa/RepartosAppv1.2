@@ -1,0 +1,72 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_container2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:id="@+id/rectangle_2"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/rectangle_1_shape" />
+
+    <TextView
+        android:id="@+id/repartos_txt3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="Dongle"
+        android:text="@string/ajustes_string"
+        android:textColor="@color/repartos_color"
+        android:textSize="30sp" />
+
+    <ListView
+        android:id="@+id/almacen_lv"
+        style="@style/Widget.AppCompat.Light.ListView.DropDown"
+        android:layout_width="409dp"
+        android:layout_height="220dp"
+        android:layout_below="@id/matricula_ti"
+        android:layout_marginTop="10dp"
+        android:choiceMode="singleChoice" />
+
+    <!--<com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/usuario_ti"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/rectangle_2"
+        android:layout_marginTop="15dp"
+        android:hint="@string/IDusuario"
+        tools:ignore="VisualLintTextFieldSize" />-->
+
+    <EditText
+        android:id="@+id/usuario_ti"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rectangle_2"
+        android:layout_marginTop="15dp"
+        android:hint="@string/IDusuario"
+        android:padding="10dp" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/pwd_ti"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/usuario_ti"
+        android:layout_marginTop="10dp"
+        android:hint="@string/codigo_aut"
+        tools:ignore="VisualLintTextFieldSize" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/matricula_ti"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/pwd_ti"
+        android:layout_marginTop="10dp"
+        android:hint="@string/IDmatricula"
+        tools:ignore="VisualLintTextFieldSize" />
+
+    <TextView
+        android:id="@+id/rdo_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
+</RelativeLayout>

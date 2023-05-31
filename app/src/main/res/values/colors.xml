@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!-- pagppal colors -->
+
+	<color name="colorPrimary">#008577</color>
+	<color name="colorPrimaryDark">#00574B</color>
+	<color name="colorAccent">#D81B60</color>
+
+    <color name="_bg__pagppal_ek2_color">#ffffff</color>
+	<color name="ellipse_7_color">#ECEBEB</color>
+	<color name="rectangle_1_color">#F2622D</color>
+	<color name="repartos_color">#FFFFFF</color>
+	<color name="color_texto">#000000</color>
+</resources>
