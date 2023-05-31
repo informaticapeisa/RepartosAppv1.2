@@ -1,25 +1,27 @@
 package exportkit.figma;
 
-import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ListView;
+import android.widget.AdapterView;
+import android.widget.Spinner;
 import android.widget.TextView;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.repartosappv1.R;
 
 
-public class Ajustes extends Activity {
+public class Ajustes extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     private EditText nombre;
     private EditText matricula;
     private EditText pwd;
 
-    private ListView almacenes;
+    private Spinner almacenes;
     private TextView resultado;
-    String[] alm = {"Peisa Central","Peisa Gandía","Peisa Castellón","Peisa Alzira","Peisa Valencia","Peisa Lorca","Peisa Barcelona", "Peisa Madrid","Peisa Alicante","Peisa La Mancha"};
-    protected void onCreate(Bundle savedInstanceState) {
+    public String[] alm = {"Peisa Central","Peisa Gandía","Peisa Castellón","Peisa Alzira","Peisa Valencia","Peisa Lorca","Peisa Barcelona", "Peisa Madrid","Peisa Alicante","Peisa La Mancha"};
+    protected void onCreate(Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ajustes);
         //Intent intent0 = getIntent();
@@ -30,8 +32,20 @@ public class Ajustes extends Activity {
         resultado=findViewById(R.id.rdo_tv);
         ArrayAdapter<String> arr;
         arr = new ArrayAdapter<String>(this, R.layout.items_lista, alm);
+        arr.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         almacenes.setAdapter(arr);
+        almacenes.setOnItemSelectedListener(this);
     }
+    @Override
+    public void onItemSelected(AdapterView<?> arg0, View arg1, int posicion, long id) {
+        //Toast.makeText(getApplicationContext(), "Almacén Seleccionado: "+alm[posicion] ,Toast.LENGTH_SHORT).show();
+        resultado.setText(alm[posicion]);
+    }
+    @Override
+    public void onNothingSelected(AdapterView<?> arg0) {
+        resultado.setText(alm[0]);
+    }
+
     // Obtenemos los datos almacenados en onResume() porque se llamará cuando la app se abra de nuevo
     @Override
     protected void onResume() {
@@ -41,14 +55,15 @@ public class Ajustes extends Activity {
         String s1 = sh.getString("nombre", "");
         String s2 = sh.getString("pwd", "");
         String s3 = sh.getString("matricula", "");
-        //int a = sh.getInt("age", 0);
+        int s4 = sh.getInt("almacen", 0);
 
         // Setting the fetched data in the EditTexts
         nombre.setText(s1);
         matricula.setText(s2);
         pwd.setText(s3);
-        //age.setText(String.valueOf(a));
+        almacenes.setSelection((s4));
     }
+
     //Almacenamos los datos en SharedPreferences en el evento onPause()
     // Cuando el usuario cierre la app onPause() será llamado y los datos serán almacendos
     @Override
@@ -62,7 +77,7 @@ public class Ajustes extends Activity {
         myEdit.putString("nombre", nombre.getText().toString());
         myEdit.putString("pwd", pwd.getText().toString());
         myEdit.putString("matricula", matricula.getText().toString());
-        //myEdit.putInt("age", Integer.parseInt(age.getText().toString()));
+        myEdit.putInt("almacen", almacenes.getSelectedItemPosition());
         myEdit.apply();
         myEdit.commit();
     }
