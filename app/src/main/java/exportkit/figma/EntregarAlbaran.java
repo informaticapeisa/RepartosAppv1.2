@@ -22,6 +22,8 @@ import androidx.core.content.ContextCompat;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
@@ -47,14 +49,9 @@ public class EntregarAlbaran extends Activity {
     FusedLocationProviderClient fusedLocationProviderClient;
     private final static int REQUEST_CODE = 100;
     public SurfaceView surfaceView;
-    public TextView txtCliente;
-    public TextView txtDireccion;
-    public TextView txtBarcodeValue;
-    public TextView txtCodigoAlbaran;
-    public TextView txtCodigoPostal;
-    public TextView txtEnt1;
-    public TextView txtEnt2;
-    public TextView txtEnt3;
+    public TextView txtCliente,txtDireccion,txtBarcodeValue,txtCodigoAlbaran,txtCodigoPostal;
+
+     public TextView txtEnt1,txtEnt2,txtEnt3;
 
     private Button entregar_bt;
 
@@ -62,18 +59,21 @@ public class EntregarAlbaran extends Activity {
     private CameraSource cameraSource;
     private static final int REQUEST_CAMERA_PERMISSION = 201;
     String intentData = "";
-    private LinearLayout alb;
-    private LinearLayout albent;
+    private LinearLayout alb,albent;
 
     public ImageView hole;
-    public TextView alb_tv;
+    //public TextView alb_tv;
     String codigobarras;
     private String datosalbaran;
     public List<Address> addresses;
 
     public void Entregar(View view) {
         fusedLocationProviderClient= LocationServices.getFusedLocationProviderClient(this);
-        getLastLocation();
+        addresses=getLastLocation();
+        String latitude=String.valueOf(addresses.get(0).getLatitude());
+        String longitude=String.valueOf(addresses.get(0).getLongitude());
+        AlbaranEntregado(1,"1305340751018",latitude,longitude);
+
         Toast.makeText(getApplicationContext(), "Marcando albarán como entregado...", Toast.LENGTH_SHORT).show();
     }
 
@@ -90,11 +90,6 @@ public class EntregarAlbaran extends Activity {
                                 List<Address> addresses= null;
                                 try {
                                     addresses = geocoder.getFromLocation(location.getLatitude(),location.getLongitude(),1);
-//                                    latitude.setText("Latitude :" +addresses.get(0).getLatitude());
-//                                    longitude.setText("Longitude :"+addresses.get(0).getLongitude());
-//                                    address.setText("Address :"+addresses.get(0).getAddresLine(0));
-//                                    city.setText("City :"+addresses.get(0).getLocality());
-//                                    country.setText("Country :"+addresses.get(0).getCountryName());
                                     entregar_bt.setVisibility(View.GONE);
                                     albent.setVisibility(View.VISIBLE);
                                     txtEnt1.setText("Datos albarán entregado");
@@ -140,10 +135,10 @@ public class EntregarAlbaran extends Activity {
         /////////////////////////////////////////////////////
         //Lineas a poner para probar en emulador
         ////////////////////////////////////////////////////
-//        alb.setVisibility(View.VISIBLE);
-//        surfaceView.setVisibility(View.GONE);
-//        surfaceView.setZOrderOnTop(false);
-//        hole.bringToFront();
+        alb.setVisibility(View.VISIBLE);
+        surfaceView.setVisibility(View.GONE);
+        surfaceView.setZOrderOnTop(false);
+        hole.bringToFront();
         ////////////////////////////////////////////////
         /////////////////////////////////////////////////
         txtCliente=findViewById(R.id.Cliente_tv);
@@ -161,40 +156,40 @@ public class EntregarAlbaran extends Activity {
         /////////////////////////////////////////////////////
         //Lineas a poner para probar en emulador
         ////////////////////////////////////////////////////
-//        ObtenerDatosAlbaran("1305340751018", new DatosAlbaranCallBack() {
-//            @Override
-//            public void onSuccess(String response) {
-//
-//                try {
-//                    JSONObject jsonObject = new JSONObject(response);
-//                    txtCodigoAlbaran.setText(jsonObject.getString("serie")+"/"+jsonObject.getString("numero"));
-//                    txtCliente.setText(jsonObject.getString("cliente"));
-//                    //txtid.setText(jsonObject.getString("nombre"));
-//                    txtDireccion.setText(jsonObject.getString("direccion"));
-//                    txtCodigoPostal.setText(jsonObject.getString("cpo"));
-//                    //txtPoblacion.setText(jsonObject.getString("poblacion"));
-////                    txtType.setText(jsonObject.getString("telefono"));
-////                    txtDate.setText(jsonObject.getString("fecha"));
-////                    txtDate.setText(jsonObject.getString("codentrega"));
-//
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-//
-//            }
-//
-//            @Override
-//            public void onError(String error) {
-//
-//            }
-//        });
+        ObtenerDatosAlbaran("1305340751018", new DatosAlbaranCallBack() {
+            @Override
+            public void onSuccess(String response) {
+
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    txtCodigoAlbaran.setText(jsonObject.getString("serie")+"/"+jsonObject.getString("numero"));
+                    txtCliente.setText(jsonObject.getString("cliente"));
+                    //txtid.setText(jsonObject.getString("nombre"));
+                    txtDireccion.setText(jsonObject.getString("direccion"));
+                    txtCodigoPostal.setText(jsonObject.getString("cpo"));
+                    //txtPoblacion.setText(jsonObject.getString("poblacion"));
+//                    txtType.setText(jsonObject.getString("telefono"));
+//                    txtDate.setText(jsonObject.getString("fecha"));
+//                    txtDate.setText(jsonObject.getString("codentrega"));
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+            @Override
+            public void onError(String error) {
+
+            }
+        });
 ///////////////////
         ////////////////////////////////////////////////
         /////////////////////////////////////////////////
     }
+
     private String ObtenerDatosAlbaran(String barcode,DatosAlbaranCallBack callBack)
     {
-        //String url="https://www.peisanet.es/api/Albaran/"+barcode;
         String url = "https://www.peisanet.es/api/Reparto/ObtenerDatosAlbaran?codebar="+barcode;
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new com.android.volley.Response.Listener<String>() {
             @Override
@@ -214,9 +209,6 @@ public class EntregarAlbaran extends Activity {
               callBack.onError(error.getMessage());
             }
         }){
-            /**
-             * Passing some request headers
-             * */
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap header = new HashMap<>();
@@ -224,11 +216,41 @@ public class EntregarAlbaran extends Activity {
                 return header;
             }
 
-        };;
+        };
         Volley.newRequestQueue(this).add(stringRequest);
         return datosalbaran;
     }
+    private boolean AlbaranEntregado(Integer reparto, String codebar, String lattitude, String longitude){
+        String url = "https://www.peisanet.es/api/Reparto/AlbaranEntregado";
+        RequestQueue queue = Volley.newRequestQueue(this);
+        StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
 
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        })
+        {
+            @Override
+            protected Map<String, String> getParams() {
+
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Authorization", "Bearer "+"cmVwYXJ0b3M6cmVwYXJ0b3M=");
+                params.put("reparto", String.valueOf(reparto));
+                params.put("codebar", codebar);
+                params.put("lattitude",lattitude);
+                params.put("longitude",longitude);
+
+                return params;
+            }
+        };
+        queue.add(request);
+        return true;
+    }
     private void initialiseDetectorsAndSources() {
 
         Toast.makeText(getApplicationContext(), "Comienza escaneo", Toast.LENGTH_SHORT).show();
