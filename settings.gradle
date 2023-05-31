@@ -15,5 +15,5 @@ dependencyResolutionManagement {
 
     }
 }
-rootProject.name = "RepartosAppv1.1"
+rootProject.name = "RepartosAppv1.2"
 include ':app'
