@@ -69,6 +69,7 @@ public class EntregarAlbaran extends Activity {
     private String datosalbaran;
     private boolean entregado;
     public List<Address> addresses;
+    public List<Address> direccion;
 
     public interface DatosAlbaranCallBack{
         void onSuccess(String response);
@@ -77,19 +78,20 @@ public class EntregarAlbaran extends Activity {
 
 
     public void Entregar(View view) {
-//        fusedLocationProviderClient= LocationServices.getFusedLocationProviderClient(this);
-//        addresses=getLastLocation();
-//        String latitude=String.valueOf(addresses.get(0).getLatitude());
-//        String longitude=String.valueOf(addresses.get(0).getLongitude());
+        fusedLocationProviderClient= LocationServices.getFusedLocationProviderClient(this);
+        direccion=obtenerUltimaPosicion();
+        //obtenerUltimaPosicion();
+        String latitude=String.valueOf(direccion.get(0).getLatitude());
+        String longitude=String.valueOf(direccion.get(0).getLongitude());
 //        //AlbaranEntregado(1,"1305340751018",latitude,longitude);
-//        AlbaranEntregado(1, codigobarras, latitude, longitude);
+       AlbaranEntregado(1, codigobarras, latitude, longitude);
         Toast.makeText(getApplicationContext(), "Tengo el codigo: "+codigobarras, Toast.LENGTH_SHORT).show();
         //Toast.makeText(getApplicationContext(), "Marcando albarán como entregado...", Toast.LENGTH_SHORT).show();
 //NO sé pq peta si codigobarras tiene el valor correcto
     }
 
 
-    private List<Address> getLastLocation() {
+    private List<Address> obtenerUltimaPosicion() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
 
             fusedLocationProviderClient.getLastLocation()
