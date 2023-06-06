@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 public class pagppal_activity extends Activity {
 
-	ImageView entregaralbaran;
+	ImageView entregaralbaran,crearreparto_bt;
 	ImageView ajustes;
 	private View _bg__pagppal_ek2;
 	private View ellipse_7;
@@ -57,6 +57,7 @@ public class pagppal_activity extends Activity {
 		matricula = (TextView) findViewById(R.id.matricula_tv);
 		//vector_ek3 = (ImageView) findViewById(R.id.ajustes_bt);
 		entregaralbaran=(ImageView)findViewById(R.id.entregar_albaran_iv);
+		crearreparto_bt=(ImageView)findViewById(R.id.crear_reparto_iv);
 		entregaralbaran.setOnClickListener(new View.OnClickListener() {
 											  @Override
 											  public void onClick(View v) {
@@ -64,9 +65,15 @@ public class pagppal_activity extends Activity {
 												  startActivity(entrega);
 											  }
 										  });
+		crearreparto_bt.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent reparto = new Intent(pagppal_activity.this,CrearReparto.class);
+				startActivity(reparto);
 
-
-				//custom code goes here
+			}
+		});
+		//custom code goes here
 		ajustes=(ImageView)findViewById(R.id.ajustes_bt);
 		ajustes.setOnClickListener(new View.OnClickListener() {
 			@Override
