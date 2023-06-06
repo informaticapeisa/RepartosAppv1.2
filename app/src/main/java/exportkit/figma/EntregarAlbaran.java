@@ -68,8 +68,6 @@ public class EntregarAlbaran extends Activity {
     public String codigobarras;
     private String datosalbaran;
     private boolean entregado;
-    public List<Address> addresses;
-    public List<Address> direccion;
 
     public interface DatosAlbaranCallBack{
         void onSuccess(String response);
@@ -79,19 +77,7 @@ public class EntregarAlbaran extends Activity {
 
     public void Entregar(View view) {
         fusedLocationProviderClient= LocationServices.getFusedLocationProviderClient(this);
-        direccion=obtenerUltimaPosicion();
-        //obtenerUltimaPosicion();
-        String latitude=String.valueOf(direccion.get(0).getLatitude());
-        String longitude=String.valueOf(direccion.get(0).getLongitude());
-//        //AlbaranEntregado(1,"1305340751018",latitude,longitude);
-       AlbaranEntregado(1, codigobarras, latitude, longitude);
-        Toast.makeText(getApplicationContext(), "Tengo el codigo: "+codigobarras, Toast.LENGTH_SHORT).show();
-        //Toast.makeText(getApplicationContext(), "Marcando albarán como entregado...", Toast.LENGTH_SHORT).show();
-//NO sé pq peta si codigobarras tiene el valor correcto
-    }
 
-
-    private List<Address> obtenerUltimaPosicion() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
 
             fusedLocationProviderClient.getLastLocation()
@@ -100,7 +86,7 @@ public class EntregarAlbaran extends Activity {
                         public void onSuccess(Location location) {
                             if (location !=null){
                                 Geocoder geocoder=new Geocoder(EntregarAlbaran.this, Locale.getDefault());
-                                List<Address> addresses= null;
+                                List<Address> addresses;
                                 try {
                                     addresses = geocoder.getFromLocation(location.getLatitude(),location.getLongitude(),1);
                                     entregar_bt.setVisibility(View.GONE);
@@ -108,6 +94,9 @@ public class EntregarAlbaran extends Activity {
                                     txtEnt1.setText("Datos albarán entregado");
                                     txtEnt2.setText(addresses.get(0).getAddressLine(0));
                                     txtEnt3.setText("Latitud:" +addresses.get(0).getLatitude()+","+"Longitud:"+addresses.get(0).getLongitude());
+                                    String latitude=String.valueOf(addresses.get(0).getLatitude());
+                                    String longitude=String.valueOf(addresses.get(0).getLongitude());
+                                    AlbaranEntregado(1,codigobarras,latitude,longitude);
                                 } catch (IOException e) {
                                     e.printStackTrace();
                                 }
@@ -120,9 +109,10 @@ public class EntregarAlbaran extends Activity {
         {
             askPermission();
         }
-
-        return addresses;
+        Toast.makeText(getApplicationContext(), "Marcando albarán como entregado...", Toast.LENGTH_SHORT).show();
     }
+
+
     private void askPermission() {
         ActivityCompat.requestPermissions(this, new String[]
                 {Manifest.permission.ACCESS_FINE_LOCATION},REQUEST_CODE);
