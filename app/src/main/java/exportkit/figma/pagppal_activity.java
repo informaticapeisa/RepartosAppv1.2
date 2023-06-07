@@ -66,12 +66,12 @@ public class pagppal_activity extends Activity {
 											  }
 										  });
 		crearreparto_bt.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Intent reparto = new Intent(pagppal_activity.this,CrearReparto.class);
-				startActivity(reparto);
+											@Override
+											public void onClick(View v) {
+												Intent reparto = new Intent(pagppal_activity.this,CrearReparto.class);
+												startActivity(reparto);
 
-			}
+											}
 		});
 		//custom code goes here
 		ajustes=(ImageView)findViewById(R.id.ajustes_bt);

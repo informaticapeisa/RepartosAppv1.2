@@ -118,8 +118,6 @@ public class EntregarAlbaran extends Activity {
                 {Manifest.permission.ACCESS_FINE_LOCATION},REQUEST_CODE);
     }
 
-
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.entregar_albaran);

@@ -23,7 +23,14 @@
         <activity
             android:name="exportkit.figma.EntregarAlbaran"
             android:exported="false"
-            android:label="@string/title_activity_modificar_reparto"
+            android:label="@string/entregaralbaran"
+            android:theme="@style/Theme.AppCompat.Light"
+            tools:ignore="Instantiatable"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="exportkit.figma.CrearReparto"
+            android:exported="false"
+            android:label="@string/crear_reparto"
             android:theme="@style/Theme.AppCompat.Light"
             tools:ignore="Instantiatable"
             android:screenOrientation="portrait"/>
