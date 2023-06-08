@@ -5,6 +5,7 @@ import static com.google.android.material.color.utilities.MaterialDynamicColors.
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.format.DateUtils;
 import android.util.Log;
 
 import com.android.volley.AuthFailureError;
@@ -19,8 +20,12 @@ import com.example.repartosappv1.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Date;
 
@@ -37,15 +42,17 @@ public class CrearReparto extends Activity {
     private Integer CrearCodigoReparto() {
 
         String url = "https://www.peisanet.es/api/Reparto/CrearReparto";
-        Map<String,String> params = new HashMap<>();
-        //params.put("empresa",String.valueOf(reparto));
+
+        Map<String,Object> params =  new HashMap<>();
+
         params.put("empresa",String.valueOf(1));
-        params.put("almacen",String.valueOf(11));
+        params.put("almacen",11);
         params.put("usuario", "plamarca");
         params.put("matricula", "5148GXC");
-        Date currentTime = Calendar.getInstance().getTime();
-        params.put("fecha", currentTime.toString());
+
+
         JSONObject jsonObject = new JSONObject(params);
+
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, jsonObject, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
