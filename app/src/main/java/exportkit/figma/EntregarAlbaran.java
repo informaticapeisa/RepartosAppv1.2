@@ -4,6 +4,7 @@ import static com.google.android.gms.vision.L.TAG;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.job.JobScheduler;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Address;
@@ -67,7 +68,7 @@ public class EntregarAlbaran extends Activity {
     public ImageView hole;
     public String codigobarras;
     private String datosalbaran;
-    private boolean entregado;
+    private JSONObject resultado_entrega= null;
 
     public interface DatosAlbaranCallBack{
         void onSuccess(String response);
@@ -96,7 +97,10 @@ public class EntregarAlbaran extends Activity {
                                     txtEnt3.setText("Latitud:" +addresses.get(0).getLatitude()+","+"Longitud:"+addresses.get(0).getLongitude());
                                     String latitude=String.valueOf(addresses.get(0).getLatitude());
                                     String longitude=String.valueOf(addresses.get(0).getLongitude());
-                                    AlbaranEntregado(1,codigobarras,latitude,longitude);
+
+                                    JSONObject resultado=AlbaranEntregado(1,codigobarras,latitude,longitude);
+                                    //JSONObject resultado=AlbaranEntregado(1,"1305340751018",latitude,longitude);
+
                                 } catch (IOException e) {
                                     e.printStackTrace();
                                 }
@@ -162,26 +166,19 @@ public class EntregarAlbaran extends Activity {
 //                    JSONObject jsonObject = new JSONObject(response);
 //                    txtCodigoAlbaran.setText(jsonObject.getString("serie")+"/"+jsonObject.getString("numero"));
 //                    txtCliente.setText(jsonObject.getString("cliente"));
-//                    //txtid.setText(jsonObject.getString("nombre"));
 //                    txtDireccion.setText(jsonObject.getString("direccion"));
 //                    txtCodigoPostal.setText(jsonObject.getString("cpo"));
-//                    //txtPoblacion.setText(jsonObject.getString("poblacion"));
-////                    txtType.setText(jsonObject.getString("telefono"));
-////                    txtDate.setText(jsonObject.getString("fecha"));
-////                    txtDate.setText(jsonObject.getString("codentrega"));
 //
 //                } catch (JSONException e) {
 //                    e.printStackTrace();
 //                }
-//
 //            }
-//
 //            @Override
 //            public void onError(String error) {
 //
 //            }
 //        });
-///////////////////
+        ///////////////////
         ////////////////////////////////////////////////
         /////////////////////////////////////////////////
     }
@@ -220,9 +217,9 @@ public class EntregarAlbaran extends Activity {
         return datosalbaran;
     }
 
-    private Boolean AlbaranEntregado(Integer reparto, String codebar, String lattitude, String longitude)
+    private JSONObject AlbaranEntregado(Integer reparto, String codebar, String lattitude, String longitude)
     {
-        String url = "https://www.peisanet.es/api/Reparto/AlbaranEntregado";
+        String url = "https://www.peisanet.es/api/Reparto/EntregarAlbaran";
         Map<String,String> params = new HashMap<>();
         params.put("reparto",String.valueOf(reparto));
         params.put("codebar",codebar);
@@ -233,14 +230,22 @@ public class EntregarAlbaran extends Activity {
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.PUT,url,jsonObject, new Response.Listener<JSONObject>(){
             @Override
             public void onResponse(JSONObject response) {
-                Log.d(TAG,"User creation completed successfully");
-                entregado=true;
+                try {
+                    if (response.getString("Resultado")=="Entregado")
+                    Toast.makeText(getApplicationContext(), "Albarán entregado correctamente.", Toast.LENGTH_SHORT).show();
+                    else
+                    Toast.makeText(getApplicationContext(), response.getString("Error"), Toast.LENGTH_SHORT).show();
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                }
+                resultado_entrega=response;
         }
         },new Response.ErrorListener(){
             @Override
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
-                entregado=false;
+                Toast.makeText(getApplicationContext(), "Error en WS", Toast.LENGTH_SHORT).show();
+
             }
         }) {
             @Override
@@ -257,7 +262,7 @@ public class EntregarAlbaran extends Activity {
             }
         };
         Volley.newRequestQueue(this).add(request);
-        return entregado;
+        return resultado_entrega;
     }
 
     private void initialiseDetectorsAndSources() {
